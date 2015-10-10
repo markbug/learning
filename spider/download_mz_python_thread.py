@@ -3,6 +3,7 @@
 # author: markbug
 # date  : 2015-09-22
 # ver   : 1.0
+# desc  : multithread version
 
 import os,sys
 import threading
@@ -15,6 +16,7 @@ url_base =  "http://www.maiziedu.com"
 url_start = "http://www.maiziedu.com/course/python/"
 headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:32.0) Gecko/20100101 Firefox/32.0'}
 
+# save video 
 def get_save_path(name):
     path = os.getcwd()
     path = os.path.join(path,name)
@@ -23,6 +25,7 @@ def get_save_path(name):
     print "path [%s]" % path
     return path
 
+# get lesson download list url
 def get_lesson_list():
     py_lesson_list = []
 
@@ -38,6 +41,7 @@ def get_lesson_list():
     print len(py_lesson_list)
     return py_lesson_list
 
+# get lesson name
 def get_lesson_name():
     py_name_list = []
     
@@ -78,6 +82,7 @@ def get_lesson_url():#(lesson_name, lesson_url):
             download_lesson(url, path)
 ''' 
 
+# get video url
 def get_video_url(lesson_name, lesson_url):
     lesson_url_temp = []
        
@@ -97,7 +102,7 @@ def get_video_url(lesson_name, lesson_url):
         download_lesson(url, path)
 
 
-#下载课程视频
+# download lesson video 
 def download_lesson(lesson_url, path):
     request = urllib2.Request(lesson_url, headers = headers)
     r = urllib2.urlopen(request)
